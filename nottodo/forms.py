@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .models import NotToDo, SharedNotToDo, Comment
 from django import forms
 from .models import NotToDo, SharedNotToDo, Comment
+from django import forms
 
 class NotToDoForm(forms.ModelForm):
     class Meta:
@@ -42,3 +43,9 @@ class CustomChangeEmailForm(forms.Form):
     def save(self):
         self.user.email = self.cleaned_data['email']
         self.user.save()
+
+class ContactUsForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    subject = forms.CharField(max_length=100)
+    message = forms.CharField(widget=forms.Textarea)

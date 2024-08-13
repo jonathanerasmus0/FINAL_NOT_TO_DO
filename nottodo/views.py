@@ -13,6 +13,10 @@ from django.utils import timezone
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.core.mail import send_mail
+from .forms import ContactUsForm 
 import pytz
 
 @login_required
@@ -240,3 +244,33 @@ def check_reminders(request):
     now = timezone.now()
     has_reminders = NotToDo.objects.filter(user=request.user, scheduled_start_time__gt=now).exists()
     return JsonResponse({'has_reminders': has_reminders})
+
+def contact_us(request):
+    if request.method == "POST":
+        form = ContactUsForm(request.POST)
+        if form.is_valid():
+            # Handle the form submission logic here, e.g., save data to the database
+            # or send an email
+            
+            # Example: sending an email
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            sender = form.cleaned_data['email']
+            
+            # Send email (customize with your actual settings and recipient)
+            send_mail(
+                subject,
+                message,
+                sender,
+                ['joesaudi@hotmail.com'],
+            )
+            
+            # After processing, redirect to a success page or return a success message
+            return HttpResponse("Thank you for contacting us!")
+        else:
+            # If the form is invalid, render the form with error messages
+            return render(request, 'contact_us.html', {'form': form})
+    
+    # If the request method is GET, render the empty form
+    form = ContactUsForm()
+    return render(request, 'contact_us.html', {'form': form})
