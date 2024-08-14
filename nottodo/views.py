@@ -237,8 +237,6 @@ def nottodo_events(request):
 
     return JsonResponse(events, safe=False)
 
-
-
 @login_required
 def check_reminders(request):
     now = timezone.now()
@@ -249,20 +247,26 @@ def contact_us(request):
     if request.method == "POST":
         form = ContactUsForm(request.POST)
         if form.is_valid():
-            # Handle the form submission logic here, e.g., save data to the database
-            # or send an email
-            
-            # Example: sending an email
+            # Extract form data
+            name = form.cleaned_data['name']
+            sender_email = form.cleaned_data['email']
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
-            sender = form.cleaned_data['email']
             
-            # Send email (customize with your actual settings and recipient)
+            # Construct the full email message with all details
+            full_message = (
+                f"Name: {name}\n"
+                f"Email: {sender_email}\n"
+                f"Subject: {subject}\n\n"
+                f"Message:\n{message}"
+            )
+            
+            # Send the email (customize with your actual settings and recipient)
             send_mail(
-                subject,
-                message,
-                sender,
-                ['joesaudi@hotmail.com'],
+                subject,                 # Subject of the email
+                full_message,            # Full message including name, email, and message
+                sender_email,            # From email
+                ['joesaudi@hotmail.com'], # To email
             )
             
             # After processing, redirect to a success page or return a success message
