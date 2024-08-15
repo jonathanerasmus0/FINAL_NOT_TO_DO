@@ -269,8 +269,16 @@ def contact_us(request):
                 ['joesaudi@hotmail.com'], # To email
             )
             
-            # After processing, redirect to a success page or return a success message
-            return HttpResponse("Thank you for contacting us!")
+            # Return a success message with a button to redirect to the main page
+            return HttpResponse("""
+                <html>
+                <body>
+                    <h2>Thank you for contacting us!</h2>
+                    <p>Your message has been sent successfully.</p>
+                    <a href="/" class="btn btn-primary">Go to Main Page</a>
+                </body>
+                </html>
+            """)
         else:
             # If the form is invalid, render the form with error messages
             return render(request, 'contact_us.html', {'form': form})
