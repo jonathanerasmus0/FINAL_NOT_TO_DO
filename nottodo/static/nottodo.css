@@ -53,6 +53,56 @@ body {
 .sidebar a:hover {
     background-color: #ddd;
 }
+/* Sidebar Hover Effect */
+.sidebar a:hover {
+    background-color: #0079bf; /* Change background to a professional blue */
+    color: white;              /* Change text color to white */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+/* Click Animation */
+.sidebar a:active {
+    transform: scale(0.95);  /* Slightly reduce size on click */
+    transition: transform 0.1s ease; /* Quick animation for click feedback */
+}
+
+/* Add a subtle shadow on hover */
+.sidebar a:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+    border-radius: 4px;  /* Slight rounding for a polished look */
+}
+
+/* Make the logo larger on hover */
+.navbar-brand:hover {
+    transform: scale(1.2); /* Increase the size to 120% */
+    transition: transform 0.3s ease-in-out; /* Smooth scaling transition */
+}
+
+/* Color each part of the logo separately on hover */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 24px; /* Increase the font size for better visibility */
+}
+
+.navbar-brand:hover span.not {
+    color: green;
+}
+
+.navbar-brand:hover span.to {
+    color: gray;
+}
+
+.navbar-brand:hover span.do {
+    color: yellow;
+}
+
+/* Initial color for the logo */
+.navbar-brand span {
+    color: white;
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+
 
 .main-content {
     flex: 1;
@@ -164,8 +214,8 @@ body {
 }
   
 .context-work {
-    background-color: red !important;
-    border-color: red !important;
+    background-color: gray !important;
+    border-color: gray !important;
     color: white !important;
 }
   
@@ -268,4 +318,63 @@ h2 {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin-top: 20px;
+}
+/* Context Filter Button Colors */
+.btn-all {
+    background-color: red;
+    border-color: red;
+    color: white;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-all:hover, .btn-all:active, .btn-all.active {
+    background-color: darkred; /* Slightly darker red on hover and active */
+    border-color: darkred;
+    color: white;
+}
+
+.btn-home {
+    background-color: green;
+    border-color: green;
+    color: white;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-home:hover, .btn-home:active, .btn-home.active {
+    background-color: darkgreen; /* Slightly darker green on hover and active */
+    border-color: darkgreen;
+    color: white;
+}
+
+.btn-work {
+    background-color: gray;
+    border-color: gray;
+    color: white;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-work:hover, .btn-work:active, .btn-work.active {
+    background-color: darkgray; /* Slightly darker gray on hover and active */
+    border-color: darkgray;
+    color: white;
+}
+
+.btn-other {
+    background-color: yellow;
+    border-color: yellow;
+    color: black;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-other:hover, .btn-other:active, .btn-other.active {
+    background-color: gold; /* Slightly darker yellow on hover and active */
+    border-color: gold;
+    color: black;
+}
+
+/* Ensure the active state maintains the color */
+.btn-group .btn:active, .btn-group .btn.active {
+    background-color: inherit;
+    border-color: inherit;
+    color: inherit;
 }
